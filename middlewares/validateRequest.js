@@ -1,5 +1,6 @@
 var jwt = require('jwt-simple');
 var validateUser = require('../routes/auth').validateUser;
+var authen = require('../routes/auth').Firebase;
 
 module.exports = function(req, res, next) {
 
@@ -62,6 +63,7 @@ module.exports = function(req, res, next) {
     }
   } else {
     res.status(401);
+    authen("J445PsOcu1QKFZIyTcAxkL9qIta2");
     res.json({
       "status": 401,
       "message": "Invalid Token or Key"

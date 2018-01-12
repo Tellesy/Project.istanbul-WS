@@ -45,6 +45,16 @@ var auth = {
     }
 
   },
+  Firebase: function(uid){
+    admin.auth().getUser(uid)
+      .then(function(userRecord) {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log("Successfully fetched user data:", userRecord.toJSON());
+      })
+      .catch(function(error) {
+        console.log("Error fetching user data:", error);
+      });
+  },
 
   validate: function(username, password) {
     // spoofing the DB response for simplicity
@@ -88,14 +98,4 @@ function expiresIn(numDays) {
   return dateObj.setDate(dateObj.getDate() + numDays);
 }
 
-function firebaseAut(uid) {
-  admin.auth().getUser(uid)
-    .then(function(userRecord) {
-      // See the UserRecord reference doc for the contents of userRecord.
-      console.log("Successfully fetched user data:", userRecord.toJSON());
-    })
-    .catch(function(error) {
-      console.log("Error fetching user data:", error);
-    });
-}
 module.exports = auth;
